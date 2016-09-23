@@ -4,7 +4,7 @@
 #
 Name     : znc
 Version  : 1.6.3
-Release  : 2
+Release  : 3
 URL      : http://znc.in/releases/znc-1.6.3.tar.gz
 Source0  : http://znc.in/releases/znc-1.6.3.tar.gz
 Summary  : An advanced IRC proxy
