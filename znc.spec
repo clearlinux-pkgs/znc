@@ -6,7 +6,7 @@
 #
 Name     : znc
 Version  : 1.6.5
-Release  : 4
+Release  : 5
 URL      : http://znc.in/releases/znc-1.6.5.tar.gz
 Source0  : http://znc.in/releases/znc-1.6.5.tar.gz
 Source99 : http://znc.in/releases/znc-1.6.5.tar.gz.sig
