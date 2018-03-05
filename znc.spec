@@ -6,7 +6,7 @@
 #
 Name     : znc
 Version  : 1.6.5
-Release  : 6
+Release  : 7
 URL      : http://znc.in/releases/znc-1.6.5.tar.gz
 Source0  : http://znc.in/releases/znc-1.6.5.tar.gz
 Source99 : http://znc.in/releases/znc-1.6.5.tar.gz.sig
@@ -20,6 +20,7 @@ Requires: znc-data
 BuildRequires : grep
 BuildRequires : pkgconfig(openssl)
 BuildRequires : sed
+Patch1: manpages.patch
 
 %description
 #[![ZNC](http://wiki.znc.in/skins/common/images/wiki.png)](http://znc.in) - An advanced IRC bouncer
@@ -72,15 +73,19 @@ lib components for the znc package.
 
 %prep
 %setup -q -n znc-1.6.5
+%patch1 -p1
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1490626015
+export SOURCE_DATE_EPOCH=1520279816
 %configure --disable-static
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1490626015
+export SOURCE_DATE_EPOCH=1520279816
 rm -rf %{buildroot}
 %make_install
 
