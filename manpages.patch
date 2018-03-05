@@ -1,0 +1,11 @@
+--- znc-1.6.5/man/Makefile.in~	2018-03-05 13:51:17.732952195 -0600
++++ znc-1.6.5/man/Makefile.in	2018-03-05 13:52:11.196951801 -0600
+@@ -11,7 +11,7 @@
+ INSTALL      := @INSTALL@
+ INSTALL_DATA := @INSTALL_DATA@
+ 
+-MAN1        := znc.1.gz znc-buildmod.1.gz
++MAN1        := znc.1 znc-buildmod.1
+ 
+ ifneq "$(V)" ""
+ VERBOSE=1
