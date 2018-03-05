@@ -6,7 +6,7 @@
 #
 Name     : znc
 Version  : 1.6.5
-Release  : 7
+Release  : 8
 URL      : http://znc.in/releases/znc-1.6.5.tar.gz
 Source0  : http://znc.in/releases/znc-1.6.5.tar.gz
 Source99 : http://znc.in/releases/znc-1.6.5.tar.gz.sig
@@ -18,6 +18,7 @@ Requires: znc-lib
 Requires: znc-doc
 Requires: znc-data
 BuildRequires : grep
+BuildRequires : icu4c-dev
 BuildRequires : pkgconfig(openssl)
 BuildRequires : sed
 Patch1: manpages.patch
@@ -80,12 +81,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1520279816
+export SOURCE_DATE_EPOCH=1520282462
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1520279816
+export SOURCE_DATE_EPOCH=1520282462
 rm -rf %{buildroot}
 %make_install
 

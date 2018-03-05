@@ -1,4 +1,3 @@
 Configure miss: getopt_long in -lgnugetopt
 Configure miss: getpassphrase
 Configure miss: whether zlib is usable
-Configure miss: icu
