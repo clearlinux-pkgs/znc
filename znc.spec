@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5AE420CC0209989E (ktonibud@gmail.com)
 #
 Name     : znc
-Version  : 1.6.5
-Release  : 8
-URL      : http://znc.in/releases/znc-1.6.5.tar.gz
-Source0  : http://znc.in/releases/znc-1.6.5.tar.gz
-Source99 : http://znc.in/releases/znc-1.6.5.tar.gz.sig
+Version  : 1.6.6
+Release  : 9
+URL      : http://znc.in/releases/znc-1.6.6.tar.gz
+Source0  : http://znc.in/releases/znc-1.6.6.tar.gz
+Source99 : http://znc.in/releases/znc-1.6.6.tar.gz.sig
 Summary  : An advanced IRC proxy
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0
@@ -73,7 +73,7 @@ lib components for the znc package.
 
 
 %prep
-%setup -q -n znc-1.6.5
+%setup -q -n znc-1.6.6
 %patch1 -p1
 
 %build
@@ -81,12 +81,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1520282462
+export SOURCE_DATE_EPOCH=1520608169
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1520282462
+export SOURCE_DATE_EPOCH=1520608169
 rm -rf %{buildroot}
 %make_install
 
