@@ -5,18 +5,20 @@
 # Source0 file verified with key 0x5AE420CC0209989E (ktonibud@gmail.com)
 #
 Name     : znc
-Version  : 1.6.6
-Release  : 12
-URL      : http://znc.in/releases/znc-1.6.6.tar.gz
-Source0  : http://znc.in/releases/znc-1.6.6.tar.gz
-Source99 : http://znc.in/releases/znc-1.6.6.tar.gz.sig
+Version  : 1.7.1
+Release  : 13
+URL      : http://znc.in/releases/znc-1.7.1.tar.gz
+Source0  : http://znc.in/releases/znc-1.7.1.tar.gz
+Source99 : http://znc.in/releases/znc-1.7.1.tar.gz.sig
 Summary  : An advanced IRC proxy
 Group    : Development/Tools
-License  : Apache-2.0 GPL-2.0
-Requires: znc-bin
-Requires: znc-lib
-Requires: znc-doc
-Requires: znc-data
+License  : Apache-2.0 GPL-2.0 MIT
+Requires: znc-bin = %{version}-%{release}
+Requires: znc-data = %{version}-%{release}
+Requires: znc-lib = %{version}-%{release}
+Requires: znc-license = %{version}-%{release}
+Requires: znc-man = %{version}-%{release}
+BuildRequires : buildreq-cmake
 BuildRequires : grep
 BuildRequires : icu4c-dev
 BuildRequires : pkgconfig(openssl)
@@ -24,12 +26,14 @@ BuildRequires : sed
 Patch1: manpages.patch
 
 %description
-#[![ZNC](http://wiki.znc.in/skins/common/images/wiki.png)](http://znc.in) - An advanced IRC bouncer
+# [![ZNC](https://wiki.znc.in/resources/assets/wiki.png)](https://znc.in) - An advanced IRC bouncer
 
 %package bin
 Summary: bin components for the znc package.
 Group: Binaries
-Requires: znc-data
+Requires: znc-data = %{version}-%{release}
+Requires: znc-license = %{version}-%{release}
+Requires: znc-man = %{version}-%{release}
 
 %description bin
 bin components for the znc package.
@@ -46,34 +50,43 @@ data components for the znc package.
 %package dev
 Summary: dev components for the znc package.
 Group: Development
-Requires: znc-lib
-Requires: znc-bin
-Requires: znc-data
-Provides: znc-devel
+Requires: znc-lib = %{version}-%{release}
+Requires: znc-bin = %{version}-%{release}
+Requires: znc-data = %{version}-%{release}
+Provides: znc-devel = %{version}-%{release}
 
 %description dev
 dev components for the znc package.
 
 
-%package doc
-Summary: doc components for the znc package.
-Group: Documentation
-
-%description doc
-doc components for the znc package.
-
-
 %package lib
 Summary: lib components for the znc package.
 Group: Libraries
-Requires: znc-data
+Requires: znc-data = %{version}-%{release}
+Requires: znc-license = %{version}-%{release}
 
 %description lib
 lib components for the znc package.
 
 
+%package license
+Summary: license components for the znc package.
+Group: Default
+
+%description license
+license components for the znc package.
+
+
+%package man
+Summary: man components for the znc package.
+Group: Default
+
+%description man
+man components for the znc package.
+
+
 %prep
-%setup -q -n znc-1.6.6
+%setup -q -n znc-1.7.1
 %patch1 -p1
 
 %build
@@ -81,13 +94,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1522780539
+export SOURCE_DATE_EPOCH=1542498829
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1522780539
+export SOURCE_DATE_EPOCH=1542498829
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/znc
+cp LICENSE %{buildroot}/usr/share/package-licenses/znc/LICENSE
+cp NOTICE %{buildroot}/usr/share/package-licenses/znc/NOTICE
 %make_install
 
 %files
@@ -110,6 +126,8 @@ rm -rf %{buildroot}
 /usr/share/znc/modules/notes/tmpl/index.tmpl
 /usr/share/znc/modules/perform/tmpl/index.tmpl
 /usr/share/znc/modules/q/tmpl/index.tmpl
+/usr/share/znc/modules/samplewebapi/tmpl/index.tmpl
+/usr/share/znc/modules/sasl/tmpl/index.tmpl
 /usr/share/znc/modules/send_raw/files/select.js
 /usr/share/znc/modules/send_raw/tmpl/index.tmpl
 /usr/share/znc/modules/stickychan/tmpl/index.tmpl
@@ -132,7 +150,14 @@ rm -rf %{buildroot}
 /usr/share/znc/webskins/_default_/pub/global.css
 /usr/share/znc/webskins/_default_/pub/jquery-1.11.2.js
 /usr/share/znc/webskins/_default_/pub/jquery-1.11.2.min.js
+/usr/share/znc/webskins/_default_/pub/jquery-ui-sortable.1.11.4.css
+/usr/share/znc/webskins/_default_/pub/jquery-ui-sortable.1.11.4.js
+/usr/share/znc/webskins/_default_/pub/jquery-ui-sortable.1.11.4.min.css
+/usr/share/znc/webskins/_default_/pub/jquery-ui-sortable.1.11.4.min.js
 /usr/share/znc/webskins/_default_/pub/robots.txt
+/usr/share/znc/webskins/_default_/pub/selectize-0.12.1.css
+/usr/share/znc/webskins/_default_/pub/selectize-standalone-0.12.1.js
+/usr/share/znc/webskins/_default_/pub/selectize-standalone-0.12.1.min.js
 /usr/share/znc/webskins/_default_/tmpl/Banner.tmpl
 /usr/share/znc/webskins/_default_/tmpl/BaseHeader.tmpl
 /usr/share/znc/webskins/_default_/tmpl/BreadCrumbs.tmpl
@@ -185,6 +210,7 @@ rm -rf %{buildroot}
 /usr/include/znc/IRCSock.h
 /usr/include/znc/Listener.h
 /usr/include/znc/MD5.h
+/usr/include/znc/Message.h
 /usr/include/znc/Modules.h
 /usr/include/znc/Nick.h
 /usr/include/znc/Query.h
@@ -194,6 +220,7 @@ rm -rf %{buildroot}
 /usr/include/znc/Socket.h
 /usr/include/znc/Template.h
 /usr/include/znc/Threads.h
+/usr/include/znc/Translation.h
 /usr/include/znc/User.h
 /usr/include/znc/Utils.h
 /usr/include/znc/WebModules.h
@@ -206,12 +233,9 @@ rm -rf %{buildroot}
 /usr/include/znc/zncconfig.h
 /usr/lib64/pkgconfig/znc.pc
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
-
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/znc/admindebug.so
 /usr/lib64/znc/adminlog.so
 /usr/lib64/znc/alias.so
 /usr/lib64/znc/autoattach.so
@@ -255,6 +279,7 @@ rm -rf %{buildroot}
 /usr/lib64/znc/raw.so
 /usr/lib64/znc/route_replies.so
 /usr/lib64/znc/sample.so
+/usr/lib64/znc/samplewebapi.so
 /usr/lib64/znc/sasl.so
 /usr/lib64/znc/savebuff.so
 /usr/lib64/znc/schat.so
@@ -262,5 +287,16 @@ rm -rf %{buildroot}
 /usr/lib64/znc/shell.so
 /usr/lib64/znc/simple_away.so
 /usr/lib64/znc/stickychan.so
+/usr/lib64/znc/stripcontrols.so
 /usr/lib64/znc/watch.so
 /usr/lib64/znc/webadmin.so
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/znc/LICENSE
+/usr/share/package-licenses/znc/NOTICE
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/znc-buildmod.1
+/usr/share/man/man1/znc.1
