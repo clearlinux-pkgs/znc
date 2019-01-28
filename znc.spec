@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x5AE420CC0209989E (ktonibud@gmail.com)
 #
 Name     : znc
-Version  : 1.7.1
-Release  : 13
-URL      : http://znc.in/releases/znc-1.7.1.tar.gz
-Source0  : http://znc.in/releases/znc-1.7.1.tar.gz
-Source99 : http://znc.in/releases/znc-1.7.1.tar.gz.sig
-Summary  : An advanced IRC proxy
+Version  : 1.7.2
+Release  : 14
+URL      : http://znc.in/releases/znc-1.7.2.tar.gz
+Source0  : http://znc.in/releases/znc-1.7.2.tar.gz
+Source99 : http://znc.in/releases/znc-1.7.2.tar.gz.sig
+Summary  : An IRC bouncer with modules & scripts support
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0 MIT
 Requires: znc-bin = %{version}-%{release}
@@ -19,10 +19,12 @@ Requires: znc-lib = %{version}-%{release}
 Requires: znc-license = %{version}-%{release}
 Requires: znc-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
+BuildRequires : buildreq-kde
 BuildRequires : grep
 BuildRequires : icu4c-dev
 BuildRequires : pkgconfig(openssl)
 BuildRequires : sed
+BuildRequires : zlib-dev
 Patch1: manpages.patch
 
 %description
@@ -86,7 +88,7 @@ man components for the znc package.
 
 
 %prep
-%setup -q -n znc-1.7.1
+%setup -q -n znc-1.7.2
 %patch1 -p1
 
 %build
@@ -94,12 +96,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542498829
+export SOURCE_DATE_EPOCH=1548691136
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1542498829
+export SOURCE_DATE_EPOCH=1548691136
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/znc
 cp LICENSE %{buildroot}/usr/share/package-licenses/znc/LICENSE
