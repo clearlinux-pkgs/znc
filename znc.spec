@@ -6,7 +6,7 @@
 #
 Name     : znc
 Version  : 1.7.3
-Release  : 16
+Release  : 18
 URL      : http://znc.in/releases/znc-1.7.3.tar.gz
 Source0  : http://znc.in/releases/znc-1.7.3.tar.gz
 Source99 : http://znc.in/releases/znc-1.7.3.tar.gz.sig
@@ -26,6 +26,7 @@ BuildRequires : pkgconfig(openssl)
 BuildRequires : sed
 BuildRequires : zlib-dev
 Patch1: manpages.patch
+Patch2: CVE-2019-12816.patch
 
 %description
 # [![ZNC](https://wiki.znc.in/resources/assets/wiki.png)](https://znc.in) - An advanced IRC bouncer
@@ -55,6 +56,7 @@ Requires: znc-lib = %{version}-%{release}
 Requires: znc-bin = %{version}-%{release}
 Requires: znc-data = %{version}-%{release}
 Provides: znc-devel = %{version}-%{release}
+Requires: znc = %{version}-%{release}
 
 %description dev
 dev components for the znc package.
@@ -89,23 +91,24 @@ man components for the znc package.
 %prep
 %setup -q -n znc-1.7.3
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554159342
-export LDFLAGS="${LDFLAGS} -fno-lto"
-export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export SOURCE_DATE_EPOCH=1560790139
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1554159342
+export SOURCE_DATE_EPOCH=1560790139
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/znc
 cp LICENSE %{buildroot}/usr/share/package-licenses/znc/LICENSE
