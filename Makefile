@@ -1,5 +1,5 @@
 PKG_NAME := znc
-URL = http://znc.in/releases/znc-1.7.3.tar.gz
+URL = http://znc.in/releases/znc-1.7.4.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
