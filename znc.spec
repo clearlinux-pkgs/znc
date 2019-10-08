@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5AE420CC0209989E (ktonibud@gmail.com)
 #
 Name     : znc
-Version  : 1.7.4
-Release  : 20
-URL      : https://znc.in/releases/znc-1.7.4.tar.gz
-Source0  : https://znc.in/releases/znc-1.7.4.tar.gz
-Source1 : https://znc.in/releases/znc-1.7.4.tar.gz.sig
+Version  : 1.7.5
+Release  : 21
+URL      : https://znc.in/releases/znc-1.7.5.tar.gz
+Source0  : https://znc.in/releases/znc-1.7.5.tar.gz
+Source1 : https://znc.in/releases/znc-1.7.5.tar.gz.sig
 Summary  : An advanced IRC proxy
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0 MIT
@@ -88,7 +88,7 @@ man components for the znc package.
 
 
 %prep
-%setup -q -n znc-1.7.4
+%setup -q -n znc-1.7.5
 %patch1 -p1
 
 %build
@@ -96,7 +96,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567198266
+export SOURCE_DATE_EPOCH=1570563008
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -106,7 +106,7 @@ export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1567198266
+export SOURCE_DATE_EPOCH=1570563008
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/znc
 cp LICENSE %{buildroot}/usr/share/package-licenses/znc/LICENSE
