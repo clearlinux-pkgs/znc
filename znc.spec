@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5AE420CC0209989E (ktonibud@gmail.com)
 #
 Name     : znc
-Version  : 1.7.5
-Release  : 21
-URL      : https://znc.in/releases/znc-1.7.5.tar.gz
-Source0  : https://znc.in/releases/znc-1.7.5.tar.gz
-Source1 : https://znc.in/releases/znc-1.7.5.tar.gz.sig
+Version  : 1.8.0
+Release  : 22
+URL      : https://znc.in/releases/znc-1.8.0.tar.gz
+Source0  : https://znc.in/releases/znc-1.8.0.tar.gz
+Source1  : https://znc.in/releases/znc-1.8.0.tar.gz.sig
 Summary  : An advanced IRC proxy
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0 MIT
@@ -88,7 +88,8 @@ man components for the znc package.
 
 
 %prep
-%setup -q -n znc-1.7.5
+%setup -q -n znc-1.8.0
+cd %{_builddir}/znc-1.8.0
 %patch1 -p1
 
 %build
@@ -96,21 +97,21 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570563008
+export SOURCE_DATE_EPOCH=1588608836
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1570563008
+export SOURCE_DATE_EPOCH=1588608836
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/znc
-cp LICENSE %{buildroot}/usr/share/package-licenses/znc/LICENSE
-cp NOTICE %{buildroot}/usr/share/package-licenses/znc/NOTICE
+cp %{_builddir}/znc-1.8.0/LICENSE %{buildroot}/usr/share/package-licenses/znc/2b8b815229aa8a61e483fb4ba0588b8b6c491890
+cp %{_builddir}/znc-1.8.0/NOTICE %{buildroot}/usr/share/package-licenses/znc/a218ac130c95452b77527bc86fc9a4f98098f0dd
 %make_install
 
 %files
@@ -280,9 +281,7 @@ cp NOTICE %{buildroot}/usr/share/package-licenses/znc/NOTICE
 /usr/lib64/znc/nickserv.so
 /usr/lib64/znc/notes.so
 /usr/lib64/znc/notify_connect.so
-/usr/lib64/znc/partyline.so
 /usr/lib64/znc/perform.so
-/usr/lib64/znc/q.so
 /usr/lib64/znc/raw.so
 /usr/lib64/znc/route_replies.so
 /usr/lib64/znc/sample.so
@@ -300,8 +299,8 @@ cp NOTICE %{buildroot}/usr/share/package-licenses/znc/NOTICE
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/znc/LICENSE
-/usr/share/package-licenses/znc/NOTICE
+/usr/share/package-licenses/znc/2b8b815229aa8a61e483fb4ba0588b8b6c491890
+/usr/share/package-licenses/znc/a218ac130c95452b77527bc86fc9a4f98098f0dd
 
 %files man
 %defattr(0644,root,root,0755)
