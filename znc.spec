@@ -6,7 +6,7 @@
 #
 Name     : znc
 Version  : 1.8.2
-Release  : 25
+Release  : 26
 URL      : https://znc.in/releases/znc-1.8.2.tar.gz
 Source0  : https://znc.in/releases/znc-1.8.2.tar.gz
 Source1  : https://znc.in/releases/znc-1.8.2.tar.gz.sig
