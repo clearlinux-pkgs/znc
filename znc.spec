@@ -7,7 +7,7 @@
 #
 Name     : znc
 Version  : 1.8.2
-Release  : 28
+Release  : 29
 URL      : https://znc.in/releases/znc-1.8.2.tar.gz
 Source0  : https://znc.in/releases/znc-1.8.2.tar.gz
 Source1  : https://znc.in/releases/znc-1.8.2.tar.gz.sig
@@ -104,7 +104,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683742595
+export SOURCE_DATE_EPOCH=1685476360
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -124,7 +124,7 @@ export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 make  %{?_smp_mflags}
 popd
 %install
-export SOURCE_DATE_EPOCH=1683742595
+export SOURCE_DATE_EPOCH=1685476360
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/znc
 cp %{_builddir}/znc-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/znc/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :

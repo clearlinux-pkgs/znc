@@ -1,2 +1,4 @@
 Configure miss: getopt_long in -lgnugetopt
+Configure miss: getopt_long in -lgnugetopt
+Configure miss: getpassphrase
 Configure miss: getpassphrase
