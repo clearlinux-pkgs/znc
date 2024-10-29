@@ -9,7 +9,7 @@
 #
 Name     : znc
 Version  : 1.9.1
-Release  : 32
+Release  : 33
 URL      : https://znc.in/releases/znc-1.9.1.tar.gz
 Source0  : https://znc.in/releases/znc-1.9.1.tar.gz
 Source1  : https://znc.in/releases/znc-1.9.1.tar.gz.sig
