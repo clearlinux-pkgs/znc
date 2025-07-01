@@ -8,11 +8,11 @@
 # Source0 file verified with key 0x5AE420CC0209989E (ktonibud@gmail.com)
 #
 Name     : znc
-Version  : 1.10.0
-Release  : 34
-URL      : https://znc.in/releases/znc-1.10.0.tar.gz
-Source0  : https://znc.in/releases/znc-1.10.0.tar.gz
-Source1  : https://znc.in/releases/znc-1.10.0.tar.gz.sig
+Version  : 1.10.1
+Release  : 35
+URL      : https://znc.in/releases/znc-1.10.1.tar.gz
+Source0  : https://znc.in/releases/znc-1.10.1.tar.gz
+Source1  : https://znc.in/releases/znc-1.10.1.tar.gz.sig
 Source2  : 5AE420CC0209989E.pkey
 Summary  : No detailed summary available
 Group    : Development/Tools
@@ -124,10 +124,10 @@ chmod 700 .gnupg
 gpg --homedir .gnupg --import %{SOURCE2}
 gpg --homedir .gnupg --status-fd 1 --verify %{SOURCE1} %{SOURCE0} > gpg.status
 grep -E '^\[GNUPG:\] (GOODSIG|EXPKEYSIG) 5AE420CC0209989E' gpg.status
-%setup -q -n znc-1.10.0
-cd %{_builddir}/znc-1.10.0
+%setup -q -n znc-1.10.1
+cd %{_builddir}/znc-1.10.1
 pushd ..
-cp -a znc-1.10.0 buildavx2
+cp -a znc-1.10.1 buildavx2
 popd
 
 %build
@@ -135,7 +135,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1749568907
+export SOURCE_DATE_EPOCH=1751413227
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -189,7 +189,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1749568907
+export SOURCE_DATE_EPOCH=1751413227
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/znc
 cp %{_builddir}/znc-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/znc/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
